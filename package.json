@@ -1,0 +1,66 @@
+{
+  "name": "webdriverIO-with-mochaBDD",
+  "version": "0.0.1",
+  "description": "WebDriver bindings for Node.js with Mocha",
+  "main": "index.js",
+  "scripts": {
+    "node-inspector": "node-inspector --debug-port 5859 --no-preload",
+    "selenium-postinstall": "node node_modules/.bin/selenium-standalone install",
+    "selenium-start": "node_modules/.bin/selenium-standalone start",
+    "test": "node node_modules/webdriverio/bin/wdio ./test/config/suite.mocha.conf.js",
+    "test-mobile": "node node_modules/webdriverio/bin/wdio ./test/config/suite.appium.conf.js",
+    "allure-report": "node_modules/.bin/allure generate ./test/reports/allure-results/ && allure report",
+    "junit-report": "node_modules/.bin/junit-viewer --results=./test/reports/junit-results --save=junit-results.html && open junit-results.html"
+  },
+  "keywords": [
+    "selenium",
+    "appium",
+    "mobile",
+    "web",
+    "testing",
+    "webdriverjs",
+    "webdriverio",
+    "automation",
+    "mocha"
+  ],
+  "author": "Amiya Pattanaik <pattnaik_amiya@yahoo.com>",
+  "license": "ISC",
+  "dependencies": {
+    "appium": "^1.6.3",
+    "assert": "^1.4.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "junit-viewer": "^4.11.1",
+    "mocha": "^2.5.3",
+    "node-excel-to-json": "0.0.3",
+    "node-inspector": "^1.1.1",
+    "underscore": "^1.8.3",
+    "wdio-allure-reporter": "0.0.2",
+    "wdio-dot-reporter": "0.0.5",
+    "wdio-json-reporter": "^0.1.1",
+    "wdio-junit-reporter": "0.0.2",
+    "wdio-spec-reporter": "^0.1.2",
+    "webdriverio": "^4.8.0"
+  },
+  "devDependencies": {
+    "allure-commandline": "^2.3.4",
+    "allure-js-commons": "^1.2.1",
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-mocha": "^1.0.4",
+    "grunt-webdriver": "^2.0.3",
+    "selenium-standalone": "^6.8.0",
+    "wdio-appium-service": "^0.2.3",
+    "wdio-browserstack-service": "^0.1.4",
+    "wdio-mocha-framework": "^0.2.2",
+    "wdio-phantomjs-service": "^0.2.2",
+    "wdio-sauce-service": "^0.2.2",
+    "wdio-selenium-standalone-service": "0.0.4"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  }
+}
