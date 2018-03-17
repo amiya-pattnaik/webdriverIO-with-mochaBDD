@@ -7,7 +7,7 @@ exports.config = {
     // Specify Test Files
     // ==================
     // Define which test specs should run. The pattern is relative to the directory
-    // from which `MTAF-JS` was called. Notice that, if you are calling `wdio` from an
+    // from which `WebdriverIO` was called. Notice that, if you are calling `wdio` from an
     // NPM script (see https://docs.npmjs.com/cli/run-script) then the current working
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
@@ -23,8 +23,8 @@ exports.config = {
     // ============
     // Capabilities
     // ============
-    // Define your capabilities here. MTAF-JS can run multiple capabilities at the same
-    // time. Depending on the number of capabilities, MTAF-JS launches several test
+    // Define your capabilities here. WebdriverIO can run multiple capabilities at the same
+    // time. Depending on the number of capabilities, WebdriverIO launches several test
     // sessions. Within your capabilities you can overwrite the spec and exclude options in
     // order to group specific specs to a specific capability.
     //
@@ -131,7 +131,7 @@ exports.config = {
     // ===================
     // Test Configurations
     // ===================
-    // Define all options that are relevant for the MTAF-JS instance here
+    // Define all options that are relevant for the WebdriverIO instance here
     //
     // By default WebdriverIO commands are executed in a synchronous way using
     // the wdio-sync package. If you still want to run your tests in an async way
