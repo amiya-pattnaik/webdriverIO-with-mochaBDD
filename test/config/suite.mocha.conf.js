@@ -153,15 +153,24 @@ exports.config = {
     framework: 'mocha',
     mochaOpts: {
       ui: 'bdd',
-      compilers: ['js:babel-register'],
       timeout: 90000,
+      compilers: ['js:babel-register'],
     },
 
-    reporters: ['spec', 'junit','allure', 'json'],
+    reporters: ['spec', 'junit','allure', 'json', 'mochawesome'],
     reporterOptions: {
         junit:  {outputDir:   './test/reports/junit-results/'},
-        allure: {outputDir:   './test/reports/allure-results/'},
-        json:   {outputDir:   './test/reports/json-results/'}
+        json:   {outputDir:   './test/reports/json-results/'},
+        allure: {
+          outputDir:   './test/reports/allure-results/',
+          disableWebdriverStepsReporting: false,
+          //useCucumberStepReporter: false,
+        },
+        mochawesome:  {outputDir:   './test/reports/mocha-results/'},
+        mochawesomeOpts: {
+          includeScreenshots: true,
+          screenshotUseRelativePath:true
+        },
     },
     //
     // =====

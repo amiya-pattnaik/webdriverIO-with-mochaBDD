@@ -116,11 +116,16 @@ exports.config = {
       timeout: 90000,
     },
 
-    reporters: ['spec', 'junit','allure', 'json'],
+    reporters: ['spec', 'junit','allure', 'json', 'mochawesome'],
     reporterOptions: {
         junit:  {outputDir:   './test/reports/junit-results/'},
         allure: {outputDir:   './test/reports/allure-results/'},
-        json:   {outputDir:   './test/reports/json-results/'}
+        json:   {outputDir:   './test/reports/json-results/'},
+        mochawesome:  {outputDir:   './test/reports/mocha-results/'},
+        mochawesomeOpts: {
+          includeScreenshots: true,
+          screenshotUseRelativePath:true
+        },
     },
     //
     // =====
