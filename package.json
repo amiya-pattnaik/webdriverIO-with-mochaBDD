@@ -9,7 +9,7 @@
     "selenium-start": "node_modules/.bin/selenium-standalone start",
     "test": "node node_modules/webdriverio/bin/wdio ./test/config/suite.mocha.conf.js",
     "test-mobile": "node node_modules/webdriverio/bin/wdio ./test/config/suite.appium.conf.js",
-    "allure-report": "node_modules/.bin/allure generate ./test/reports/allure-results -c && allure open report",
+    "allure-report": "node_modules/.bin/allure generate ./test/reports/allure-results -c && allure open",
     "junit-report": "node_modules/.bin/junit-viewer --results=./test/reports/junit-results --save=junit-results.html && open junit-results.html",
     "mochawesome-report": "marge ./test/reports/mocha-results/wdiomochawesome.json --reportTitle 'Automation Execution Results' && open mochawesome-report/wdiomochawesome.html"
   },
@@ -27,6 +27,7 @@
   "author": "Amiya Pattanaik <pattnaik_amiya@yahoo.com>",
   "license": "ISC",
   "dependencies": {
+    "allure-commandline": "^2.5.0",
     "appium": "^1.6.3",
     "assert": "^1.4.1",
     "babel-preset-env": "^1.6.0",
@@ -47,7 +48,6 @@
     "webdriverio": "^4.8.0"
   },
   "devDependencies": {
-    "allure-commandline": "^2.5.0",
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
     "grunt-mocha": "^1.0.4",

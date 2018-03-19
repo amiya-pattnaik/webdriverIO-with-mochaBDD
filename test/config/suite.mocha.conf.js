@@ -148,6 +148,7 @@ exports.config = {
     connectionRetryTimeout: 90000,    // Default timeout in milliseconds for request if Selenium Grid doesn't send response
     connectionRetryCount: 3,          // Default request retries count
 
+    services: ['selenium-standalone'],
     //services: ['selenium-standalone', 'phantomjs'],
 
     framework: 'mocha',

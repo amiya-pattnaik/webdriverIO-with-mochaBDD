@@ -8,7 +8,7 @@ This project is tested on ***Node v6.10.0 to v8.9.0***.  While earlier versions 
 
 `JDK 1.8:` Install JDK 1.8+ and make sure class path is set properly. JAVA is require to start `Selenium Server` nothing else.
 
-`Node.JS:` Install  from the site - https://nodejs.org/en/  take the LTS version based on your Operating system. Please make sure you install NodeJS globally. Recommended version is 6.10.0. OR  If you have nvm installed globally, you run `nvm install` to get the latest version of node specified in the`.nvmrc` file [here](/.nvmrc).  If you don't use nvm, be sure that you are using a compatible version. Further details on nvm can be found on the official [github page](https://github.com/creationix/nvm). MAC OSX users are best suited to install nvm with homebrew `brew install nvm`.
+`Node.JS:` Install  from the site - https://nodejs.org/en/  take the LTS version based on your Operating system. Please make sure you install NodeJS globally. If you have nvm installed globally, you run `nvm install` to get the latest version of node specified in the`.nvmrc` file [here](/.nvmrc).  If you don't use nvm, be sure that you are using a compatible version. Further details on nvm can be found on the official [github page](https://github.com/creationix/nvm). MAC OSX users are best suited to install nvm with homebrew `brew install nvm`.
 
 
 Once installation is done - open terminal (MAC OS) or command prompt (windows OS) and type below command to verify NodeJS has been installed properly.
@@ -29,18 +29,20 @@ To take full advantage of the command line and use grunt tasks you will need to 
 
   To run your test You must have selenium / Appium running to execute any webdriverIO tests, or it will fail fast with an error. There are two ways you can run selenium.
 
-  Once all the node dependency modules are installed (through `npm install`) then for development, you can run  `npm run selenium-postinstall` followed by `npm run selenium-start`.  That's all there is to it.!. Please note that this step is only one time activity at the initial framework set up. Alternatively you can also use below options to start the selenium server
+  Once all the node dependency modules are installed (through `npm install`) then for development, you can run  `npm run selenium-postinstall` followed by `npm run selenium-start` if you wish to start it manually else you can use `services: ['selenium-standalone'],` in .conf.js to start it automatically which has been added as part of this project. That's all there is to it.!. Please note that this step is only one time activity at the initial framework set up. Alternatively you can also use below options to start the selenium server.
 
-  1. Install Selenium (selenium-standalone) through NPM (this is the recommended way to install) as you can use it as a services in your framework without worrying to start the selenium server manually. Please note that you follow this below step if `selenium-standalone` package in not been installed through package manager. If you are behind a specific proxy. Then you need to set some environment variables:
+  1. Install Selenium (selenium-standalone) through NPM (this is the recommended way to install) as you can use it as a services in your framework without worrying to start the selenium server manually. Please note that you follow this below step if `selenium-standalone` package in not been installed through package manager. If you are behind a specific proxy. Then you need to set environment variables:
 
-        On OSX:
+```
+  On OSX:
 
-              NODE_TLS_REJECT_UNAUTHORIZED=0 selenium-standalone install
-              NODE_TLS_REJECT_UNAUTHORIZED=0 selenium-standalone start
+      NODE_TLS_REJECT_UNAUTHORIZED=0 selenium-standalone install
+      NODE_TLS_REJECT_UNAUTHORIZED=0 selenium-standalone start
 
-       On Windows:
+  On Windows:
 
-              setx NODE_TLS_REJECT_UNAUTHORIZED 0
+      setx NODE_TLS_REJECT_UNAUTHORIZED 0
+```
 
   sudo npm install selenium-standalone@latest -g
 
@@ -91,7 +93,13 @@ To generate and view an allure report locally, run `npm run allure-report`.
 
 Allure has several other reporting tools optimized for the CI server of your choice.  You can [view the documentation here](http://wiki.qatools.ru/display/AL/Reporting).
 
-##### junit/xunit
+##### Mochawesome
+
+Mochawesome is a custom reporter for use with the Javascript testing framework, mocha. It generates a standalone HTML/CSS report to helps visualize your test runs.
+
+To generate and view a Mochawesome report locally, run `npm run mochawesome-report`.
+
+##### JUnit/xUnit
 
 The JUnit reporter helps you to create xml reports for your CI server. Add it to the reports array in the config file and define the directory where the xml files should get stored. webdriverIO will create an xml file for each instance under test and the filename will contain the browser and OS.
 
