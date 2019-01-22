@@ -6,7 +6,7 @@ class ContactUS extends Page {
     * define elements
     */
 
-    get contactUsText ()     { return browser.element('//div/h3[contains(., "Contact Us")]'); }
+    get contactUsText ()     { return $('//div/h3[contains(., "Contact Us")]'); }
 
     /**
      * define or overwrite page methods
@@ -17,8 +17,8 @@ class ContactUS extends Page {
     }
 
     waitForContactPageToLoad () {
-      if(!this.contactUsText.isVisible()){
-        this.contactUsText.waitForVisible(3000);
+      if(!this.contactUsText.isDisplayed()){
+        this.contactUsText.waitForDisplayed(3000);
       }
     }
 

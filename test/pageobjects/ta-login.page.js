@@ -1,4 +1,5 @@
-import Page from './page'
+import Page from './page';
+import utl   from '../../utilities/common-utilities';
 
 class LoginPage extends Page {
 
@@ -6,26 +7,26 @@ class LoginPage extends Page {
     * define elements
     */
 
-    get usernameInput()   { return browser.element('//*[@name="username"]'); }
-    get passwordInput()   { return browser.element('//*[@name="password"]'); }
-    get rememberMe ()     { return browser.element('//span[contains(., "Remember Me")]'); }
-    get loginButton()     { return browser.element('//button[contains(., "Login")]'); }
-    get footerImage()     { return browser.element('//*[@class="foot-brand center-block img-responsive"]'); }
+    get usernameInput()   { return $('//*[@name="username"]'); }
+    get passwordInput()   { return $('//*[@name="password"]'); }
+    get rememberMe ()     { return $('//*[@id="remember-me"]'); }
+    get loginButton()     { return $('//button[contains(., "Login")]'); }
+    get footerImage()     { return $('//*[@class="pull-right brand img-responsive"]'); }
 
     /**
      * define or overwrite page methods
      */
     open () {
         super.open('login')       //this will append `login` to the baseUrl to form complete URL
-        browser.pause(1000);
+        //browser.pause(3000);
     }
     /**
      * your page specific methods
      */
 
     waitForloginPageToLoad () {
-      if(!this.footerImage.isVisible()){
-        this.footerImage.waitForVisible(10000);
+      if(!this.footerImage.isDisplayed()){
+        this.footerImage.waitForDisplayed(5000);
       }
     }
 
@@ -35,7 +36,6 @@ class LoginPage extends Page {
       this.passwordInput.setValue(password);
       this.rememberMe.click();
       this.loginButton.click();
-      browser.pause(2000);
     }
 }
 

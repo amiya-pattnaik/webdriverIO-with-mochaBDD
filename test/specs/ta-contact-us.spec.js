@@ -11,7 +11,8 @@ describe('navigating to contact-us page', function() {
     contactUs.open();     // navigating to login page
     contactUs.waitForContactPageToLoad();
     console.log(contactUs.getPageTitle());
-    expect(contactUs.getPageTitle()).to.equal('Contact Us');
+    //expect(contactUs.getPageTitle()).to.equal('Contact Us');
+    assert.equal(contactUs.getPageTitle(), 'Contact Us');
 
   });
 });

@@ -1,56 +1,23 @@
-### WebdriverIO boilerplate code with Mocha BDD
+### WebdriverIO-v5 boilerplate code with Mocha BDD
 
-This repository contains a collection of sample webdriverIO (Selenium - Node.js/JavaScript) projects and libraries that demonstrate how to use the tool and develop automation script using the Mocha BDD framework. It support ES6 (via babel-register) and uses Grunt to manage tasks. Provides utilities to interact with object on browser using multiSelector, to read data from MS-Excel, to executes SQL statements to any database for end to end testing. It generate Spec, JUNIT, Allure, JSON reporters as well.
+This repository contains a collection of sample webdriverIO (v5x) projects and libraries that demonstrate how to use the tool and develop automation script using the Mocha BDD framework. It support ES6 (via babel-register) and uses Grunt to manage tasks, provides utilities to read data from MS-Excel, executes SQL statements to any database for end to end testing. It generate Spec, JUNIT, Allure reporters as well.
 
 ### Installation
-
-This project is tested on ***Node v6.10.0 to v8.9.0***.  While earlier versions of node may be compatible, they have not been tested or verified.
+This project is tested on ***Node v8.10.0***.  While earlier versions of node may be compatible, they have not been tested or verified.
 
 `JDK 1.8:` Install JDK 1.8+ and make sure class path is set properly. JAVA is require to start `Selenium Server` nothing else.
 
-`Node.JS:` Install  from the site - https://nodejs.org/en/  take the LTS version based on your Operating system. Please make sure you install NodeJS globally. If you have nvm installed globally, you run `nvm install` to get the latest version of node specified in the`.nvmrc` file [here](/.nvmrc).  If you don't use nvm, be sure that you are using a compatible version. Further details on nvm can be found on the official [github page](https://github.com/creationix/nvm). MAC OSX users are best suited to install nvm with homebrew `brew install nvm`.
-
-
-Once installation is done - open terminal (MAC OS) or command prompt (windows OS) and type below command to verify NodeJS has been installed properly.
-
-  node --version
-
-  npm --version
-
-Above command should print out the version that you have installed.
+`Node.JS:` Install  from the site - https://nodejs.org/en/  take the LTS version based on your Operating system. Please make sure you install NodeJS globally. Recommended version is 8.10.0. OR  If you have nvm installed globally, you run `nvm install` to get the latest version of node specified in the`.nvmrc` file [here](/.nvmrc).  If you don't use nvm, be sure that you are using a compatible version. Further details on nvm can be found on the official [github page](https://github.com/creationix/nvm). MAC OSX users are best suited to install nvm with homebrew `brew install nvm`.
 
 Now navigate to the framework's package.json folder and run `npm install` to grab all dependencies.
 
 To take full advantage of the command line and use grunt tasks you will need to make sure that you have added `node_modules/.bin` to your `$PATH`.  Otherwise you will need to install the following globally:
 
-  npm install -g  grunt-cli
+  `npm install -g  grunt-cli`
 
 ### Selenium, Appium
 
-  To run your test You must have selenium / Appium running to execute any webdriverIO tests, or it will fail fast with an error. There are two ways you can run selenium.
-
-  Once all the node dependency modules are installed (through `npm install`) then for development, you can run  `npm run selenium-postinstall` followed by `npm run selenium-start` if you wish to start it manually else you can use `services: ['selenium-standalone'],` in .conf.js to start it automatically which has been added as part of this project. That's all there is to it.!. Please note that this step is only one time activity at the initial framework set up. Alternatively you can also use below options to start the selenium server.
-
-  1. Install Selenium (selenium-standalone) through NPM (this is the recommended way to install) as you can use it as a services in your framework without worrying to start the selenium server manually. Please note that you follow this below step if `selenium-standalone` package in not been installed through package manager. If you are behind a specific proxy. Then you need to set environment variables:
-
-  - On OSX:
-      - NODE_TLS_REJECT_UNAUTHORIZED=0
-
-   - On Windows:
-      - setx NODE_TLS_REJECT_UNAUTHORIZED 0
-
-  ```
-    sudo npm install selenium-standalone@latest -g
-    sudo selenium-standalone install
-    selenium-standalone start
-  ```
-
-  OR
-
-  2. Download the latest selenium standalone server version: and then for example
-    $ java -jar selenium-server-standalone-3.4.0.jar. This option is require if you have not done the step No-1. Else ignore it. this is the other way of doing.
-
-  Note: While installing through sudo command - you need to provide System admin password. On windows don't use `sudo`
+  To run your test you must have selenium / Appium up and running to execute any webdriverIO tests, or it will fail fast with an error. To start selenium automatically in the .conf.js it has been added as part of `services: ['selenium-standalone']`. That's all there is to it.!.
 
 ### Run Some Sample Tests
 
@@ -58,7 +25,7 @@ To execute the entire test suite in local development, you can use any one of th
 
 Option 1: `npm run test`
 
-Option 2:  `grunt webdriver:test`.  This executes all features in the [`./test/specs/*.js`]  directory with a Spec reporter by default and references the `suite.yourSpecific.conf.js` file. Refer to the ./test/config of Mocha-bdd
+Option 2:  `grunt webdriver:test`.  This executes all features in the [`./test/specs/*.js`]  directory with a Spec reporter by default and references the `suite.yourSpecific.conf.js` file. Refer to the ./test/config of jasmine-bdd
 
 To execute tests on mobile device use : `npm run test-mobile`
 
@@ -90,43 +57,36 @@ To generate and view an allure report locally, run `npm run allure-report`. A ty
 
 Allure has several other reporting tools optimized for the CI server of your choice.  You can [view the documentation here](http://wiki.qatools.ru/display/AL/Reporting).
 
-##### Mochawesome
+Allure has several other reporting tools optimized for the CI server of your choice.  You can [view the documentation here](http://wiki.qatools.ru/display/AL/Reporting).
 
-Mochawesome is a custom reporter for use with the Javascript testing framework, mocha. It generates a standalone HTML/CSS report to helps visualize your test runs.
-
-To generate and view a Mochawesome report locally, run `npm run mochawesome-report`.
-
-##### JUnit/xUnit
+##### junit/xunit
 
 The JUnit reporter helps you to create xml reports for your CI server. Add it to the reports array in the config file and define the directory where the xml files should get stored. webdriverIO will create an xml file for each instance under test and the filename will contain the browser and OS.
 
 To generate and view an allure report locally, run `npm run junit-report`.
 
-##### JSON
-
-The JSON reporter is especially versatile. Since it produces a literal in a key : value pair, help to read, translate execution results to any custom reporter / it can be used to transport reporter events to another process and format them there, or to store the execution results back to any standard RDBMS or to NoSQL like mongodb with very minimal effort.
-
 ### Develop automation scripts (for both desktop browser and mobile browser / app)
 
-You can write test either by using Cucumber BDD framework or Mocha BDD framework. You can choose javascript based design pattern or ES6 based. This project is ES6 friendly (via babel-register)
+You can write test by using Jasmine BDD framework. You can choose Mocha based design pattern or ES6 based. This project is ES6 friendly (via babel-register)
 
-Refer complete [WebdriverIO API](http://webdriver.io/api.html) methods to write your automation tests.
+Refer complete [WebdriverIO v5 API](https://webdriver.io/docs/api.html) methods to write your automation tests.
 
 
-#### Using Mocha JavaScript framework
+#### Using Jasmine JavaScript framework
 
-Tests are written in the Mocha framework. More about Mocha can be found at https://mochajs.org/
+Tests are written in the Mocha framework. More about Jasmine can be found at https://mochajs.org/
 
 Tests are place in `*.specs.js` files in the `/test/specs/` directory. A typical test will look similar to this:
 ```
 //example.js
-//using synchronous mode//
+//a simple test using synchronous mode//
 
 describe('WebdriverIO search', function() {
+
     it('searches for WebdriverIO', function() {
         browser.url('https://duckduckgo.com/');
-        browser.setValue('#search_form_input_homepage', 'WebdriverIO');
-        browser.click('#search_button_homepage');
+        $('#search_form_input_homepage').setValue('WebdriverIO');
+        $('#search_button_homepage').click();
         var title = browser.getTitle();
         console.log('Title is: ' + title);
     });
@@ -135,31 +95,17 @@ describe('WebdriverIO search', function() {
 ```
 ### The Page Object Design Pattern
 
-Within your web app's UI there are areas that your tests interact with. A Page Object simply models these as objects within the test code. This reduces the amount of duplicated code and means that if the UI changes, the fix need only be applied in one place. In other wards one of the challenges of writing test automation is keeping your [selectors] (classes, id's, or xpath') up to date with the latest version of your code.  The next challenge is to keep the code you write nice and [DRY] (Don't Repeat Yourself).  The page object pattern helps us accomplish this in one solution.  Instead of including our selectors in our step definitions(in cucumber) or in Spec file (in Mocha or Mocha), we instead place them in a `<pagename>.js` file where we can manage all these selectors and methods together. Your test file should only call the test methods.
+Within your web app's UI there are areas that your tests interact with. A Page Object simply models these as objects within the test code. This reduces the amount of duplicated code and means that if the UI changes, the fix need only be applied in one place. In other wards one of the challenges of writing test automation is keeping your [selectors] (classes, id's, or xpath') up to date with the latest version of your code.  The next challenge is to keep the code you write nice and [DRY] (Don't Repeat Yourself).  The page object pattern helps us accomplish this in one solution.  Instead of including our selectors in our step definitions(in cucumber) or in Spec file (in Jasmine or Mocha), we instead place them in a `<pagename>.js` file where we can manage all these selectors and methods together. Your test file should only call the test methods.
 
 You can also place reusable functions or logic inside of these pages and call them from your step files. The page object serves as a layer of abstraction between tests and code.  When A test fails, it fails on a individual step.  That step may call a selector that is no longer valid, but that selector may be used by many other steps.  By having a single source of truth of what the selector is supposed to be, fixing one selector on the page object could repair a number of failing tests that were affected by the same selector.
 
 An object called `Page` will be created with the prototype model or by ES6 class pattern.  This ensures that every instance of a page object is exported as a stateless construct. Any any changes to that state are handled in the browser, rather than on the server.
 
-It is preferable to separate page objects into individual files that end with `.page.js`.  These will require the basic `page.js` prototype construct / abstract class and create new objects for each individual page. For more information on the implementation, refer to the `/test/pageobjects` directory.
+It is preferable to separate page objects into individual files that end with `.page.js`.  These will require the basic `page.js` prototype construct / abstract class and create new objects for each individual page.
 
-### Using multi selector option to query element
+For more information on the implementation of `Page Object Design Pattern`, refer to the `/test/pageobjects` directory.
 
-It defines one or more selectors/tags to uniquely identify the object at runtime. You can query any element with more than one selector at a time. The benefit of using multiSelector() method is, during run time, if one selector is failed, still you can identify that element with another alternative selector on and on... which makes your test script robust.
 
-*method : multiSelector(selectorList)
-* @param {selectorList} - an arraylist which contains different alternative selector
-* for example - ["[href='/guide.html1']", "//*[@id='userid']", "[@class='myclassname']"];
-
-```
-import utl   from '/utilities/common-utilities';
-
-browser.element(utl.multiSelector(['//*[@id="userid"]', '//*[@name="userAlias"]', "[ng-model='$ctrl.signInData[field.name]']"]));
-
-// or inside your page class you can use like ...
-//get usernameInput()  { return browser.element(utl.multiSelector(['//*[@id="userid"]', '//*[@name="userAlias"]', "[ng-model='$ctrl.signInData[field.name]']"])); }
-
-```
 ### Working with DataBase
 
 A relational database is, simply, a database that stores related information across multiple tables and allows you to query information in more than one table at the same time. Your application under test displays data from these database. So when you are actually performing automation testing it is very likely that you need to verify the data between actual (which you got it from browser) Vs expected (which you will get it from the database by executing SQL statements on database). This can be done by below statements in your code.

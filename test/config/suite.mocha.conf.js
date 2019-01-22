@@ -2,6 +2,14 @@
 const defaultTimeoutInterval  = process.env.DEBUG ? (60 * 60 * 500) : 90000;
 
 exports.config = {
+    //
+    // ====================
+    // Runner Configuration
+    // ====================
+    //
+    // WebdriverIO allows it to run your tests in arbitrary locations (e.g. locally or
+    // on a remote machine).
+    runner: 'local',
 
     // ==================
     // Specify Test Files
@@ -38,95 +46,51 @@ exports.config = {
     maxInstances: 15,
 
     capabilities: [
-          // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-          // grid with only 5 firefox instance available you can make sure that not more than
-          // 5 instance gets started at a time.
+      {
+        // maxInstances can get overwritten per capability. So if you have an in-house Selenium
+        // grid with only 5 Chrome instances available you can make sure that not more than
+        // 5 instances get started at a time.
+        maxInstances: 5,
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+          // to run chrome headless the following flags are required
+          // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
+          // args: ['--headless', '--disable-gpu'],
+        }
+      },
 
-        //{browserName: 'chrome', platform: '', version: '', maxInstances: '5'},
-        //{browserName: 'firefox', platform: '', version: '', maxInstances: '5'},
+      // {
+      //   // maxInstances can get overwritten per capability. So if you have an in-house Selenium
+      //   // grid with only 5 firefox instances available you can make sure that not more than
+      //   // 5 instances get started at a time.
+      //   maxInstances: 5,
+      //   browserName: 'firefox',
+      //   "moz:firefoxOptions": {
+      //     // flag to activate Firefox headless mode (see https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities for more details about moz:firefoxOptions)
+      //     //args: ['-headless']
+      //   }
+      // },
 
-          {
-              browserName: 'chrome',
-              platform: '',
-              version: '',
-              // acceptUntrustedCertificates: true,
-              // webdriver_accept_untrusted_certs: true,
-              // webdriver_assume_untrusted_issuer: true,
-              // cssSelectorsEnabled: true,
-              maxInstances: '5',
-              // specs: [
-              //     './test/specs/*.js'
-              // ],
-          },
+      // {
+      //   // maxInstances can get overwritten per capability. So if you have an in-house Selenium
+      //   // grid with only 5 Safari instances available you can make sure that not more than
+      //   // 5 instances get started at a time.
+      //   maxInstances: 5,
+      //   browserName: 'safari',
+      // },
 
-          // {
-          //     browserName: 'firefox',
-          //     platform: '',
-          //     version: '',
-          //     maxInstances: '5',
-          //     //build: process.env.TRAVIS_BUILD_NUMBER,
-          //     // specs: [
-          //     //     './test/specs/sampe*.js'
-          //     // ],
-          // },
-
-          // {
-          //     browserName: 'internet explorer',
-          //     platform: '',
-          //     version: '',
-          //     acceptUntrustedCertificates: true,
-          //     ignoreProtectedModeSettings: true,    //only applicable to IE browser
-          //     ignoreZoomSetting: true,              //only applicable to IE browser
-          //     ensureCleanSession: true,
-          //     maxInstances: '5',
-          //     // specs: [
-          //     //     './test/specs/*.js'
-          //     // ],
-          // },
-
-
-          // {
-          //     browserName: 'safari',
-          //     //platform: 'OS X 10.12.4',
-          //     //version: '9',
-          //     //acceptInsecureCerts: true,
-          //     //acceptUntrustedCertificates: true,
-          //     maxInstances: '5',
-          //     // specs: [
-          //     //     './test/specs/*.js'
-          //     // ],
-          // },
-
-          // {
-          //     browserName: 'phantomjs',
-          //     platform: '',
-          //     version: '',
-          //     maxInstances: '5',
-          //
-          //     //  specs: [
-          //     //    './test/specs/*.js'
-          //     //  ],
-          // },
-
-          // {
-          //     browserName: 'chrome',
-          //     chromeOptions: {
-          //       // run in headless mode
-          //       args: ['--headless'],
-          //       //binary:   '/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary'
-          //       binary:   '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'  //for OS X
-          //       //binary:   '/Program Files (x86)/Google/Chrome/Application/chrome.exe'     //for windows7
-          //     },
-          //     platform: '',
-          //     version: '',
-          //     maxInstances: '5',
-          //     // specs: [
-          //     //     './test/specs/*.js'
-          //     // ],
-          // }
-    ],
-
-
+      // {
+      //   // maxInstances can get overwritten per capability. So if you have an in-house Selenium
+      //   // grid with only 5 IE instances available you can make sure that not more than
+      //   // 5 instances get started at a time.
+      //   maxInstances: 5,
+      //   browserName: 'internet explorer',
+      //   acceptUntrustedCertificates: true,
+      //   ignoreProtectedModeSettings: true,    //only applicable to IE browser
+      //   ignoreZoomSetting: true,              //only applicable to IE browser
+      //   ensureCleanSession: true,
+      // },
+  ],
     //
     // ===================
     // Test Configurations
@@ -138,41 +102,66 @@ exports.config = {
     // e.g. using promises you can set the sync option to false.
     sync: true,
     logLevel: 'silent',               // Level of logging verbosity: silent | verbose | command | data | result | error
-    coloredLogs: true,                // Enables colors for log output.
-    screenshotPath: './test/reports/errorShots/', // Saves a screenshot to a given path if a command fails.
+    // Warns when a deprecated command is used
+    deprecationWarnings: true,
+    //
+    // If you only want to run your tests until a specific amount of tests have failed use
+    // bail (default is 0 - don't bail, run all tests).
+    bail: 0,
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
     baseUrl: 'http://www.phptravels.net',
-    waitforTimeout: 90000,            // Default timeout for all waitFor* commands.
+    waitforTimeout: 10000,            // Default timeout for all waitFor* commands.
     connectionRetryTimeout: 90000,    // Default timeout in milliseconds for request if Selenium Grid doesn't send response
     connectionRetryCount: 3,          // Default request retries count
 
     services: ['selenium-standalone'],
-    //services: ['selenium-standalone', 'phantomjs'],
+    // services: [browserstack'],
+    // user: process.env.BROWSERSTACK_USERNAME,
+    // key: process.env.BROWSERSTACK_ACCESS_KEY,
+    // browserstackLocal: true,
 
     framework: 'mocha',
     mochaOpts: {
       ui: 'bdd',
       timeout: 90000,
-      compilers: ['js:babel-register'],
+      compilers: ['js:@babel/register'],
     },
 
-    reporters: ['spec', 'junit','allure', 'json', 'mochawesome'],
-    reporterOptions: {
-        junit:  {outputDir:   './test/reports/junit-results/'},
-        json:   {outputDir:   './test/reports/json-results/'},
-        allure: {
-          outputDir:   './test/reports/allure-results/',
-          disableWebdriverStepsReporting: false,
-          //useCucumberStepReporter: false,
-        },
-        mochawesome:  {outputDir:   './test/reports/mocha-results/'},
-        mochawesomeOpts: {
-          includeScreenshots: true,
-          screenshotUseRelativePath:true
-        },
-    },
+    // reporters: ['spec', 'junit','allure', 'json', 'mochawesome'],
+    // reporterOptions: {
+    //     junit:  {outputDir:   './test/reports/junit-results/'},
+    //     json:   {outputDir:   './test/reports/json-results/'},
+    //     allure: {
+    //       outputDir:   './test/reports/allure-results/',
+    //       disableWebdriverStepsReporting: false,
+    //       //useCucumberStepReporter: false,
+    //     },
+    //     mochawesome:  {outputDir:   './test/reports/mocha-results/'},
+    //     mochawesomeOpts: {
+    //       includeScreenshots: true,
+    //       screenshotUseRelativePath:true
+    //     },
+    // },
+    reporters: [
+        'spec',
+        ['junit', {
+            outputDir: './test/reports/junit-results/',
+            outputFileFormat: function(opts) { // optional
+                return `results-${opts.cid}.${opts.capabilities}.xml`
+            }
+          }
+        ],
+
+        ['allure', {
+            outputDir: './test/reports/allure-results/',
+            disableWebdriverStepsReporting: true,
+            disableWebdriverScreenshotsReporting: false,
+          }
+        ],
+    ],
+
     //
     // =====
     // Hooks
@@ -200,7 +189,7 @@ exports.config = {
      * @param {Array.<String>} specs List of spec file paths that are to be run
      */
     beforeSession: function (config, capabilities, specs) {
-        //require('babel-register')
+        require('@babel/register');
     },
     /**
     // Gets executed before test execution begins. At this point you can access all global
