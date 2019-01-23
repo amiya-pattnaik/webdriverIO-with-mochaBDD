@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="navigating_to_contact_us_page" timestamp="2019-01-22T22:08:48" time="4.629" tests="1" failures="0" errors="0" skipped="0">
+    <properties>
+      <property name="specId" value="0"/>
+      <property name="suiteName" value="navigating to contact-us page"/>
+      <property name="capabilities" value="chrome"/>
+      <property name="file" value="./test/specs/ta-contact-us.spec.js"/>
+    </properties>
+    <testcase classname="chrome.navigating_to_contact_us_page" name="should_allow_user_to_navigating_contact_us_page" time="4.597"/>
+  </testsuite>
+</testsuites>

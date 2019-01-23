@@ -1,9 +1,9 @@
 ### WebdriverIO-v5 boilerplate code with Mocha BDD
 
-This repository contains a collection of sample webdriverIO (v5x) projects and libraries that demonstrate how to use the tool and develop automation script using the Mocha BDD framework. It support ES6 (via babel-register) and uses Grunt to manage tasks, provides utilities to read data from MS-Excel, executes SQL statements to any database for end to end testing. It generate Spec, JUNIT, Allure reporters as well.
+This repository contains a collection of sample webdriverIO (v5x) projects and libraries that demonstrate how to use the tool and develop automation script using the Mocha BDD framework. It support ES6 (via babel-register) and uses Grunt to manage tasks, provides utilities to read data from MS-Excel, executes SQL statements to any database(RDBMS such as Oracle, TeraData, MySQL, Vertica) for end to end testing. It generate Spec, JUNIT, Allure reporters as well.
 
 ### Installation
-This project is tested on ***Node v8.10.0***.  While earlier versions of node may be compatible, they have not been tested or verified.
+This project is tested on **Node v8.10.0**.  While earlier versions of node may be compatible, they have not been tested or verified.
 
 `JDK 1.8:` Install JDK 1.8+ and make sure class path is set properly. JAVA is require to start `Selenium Server` nothing else.
 
@@ -15,9 +15,9 @@ To take full advantage of the command line and use grunt tasks you will need to 
 
   `npm install -g  grunt-cli`
 
-### Selenium, Appium
+### Selenium Tests / Appium Tests
 
-  To run your test you must have selenium / Appium up and running to execute any webdriverIO tests, or it will fail fast with an error. To start selenium automatically in the .conf.js it has been added as part of `services: ['selenium-standalone']`. That's all there is to it.!.
+  To run your test you must have selenium / Appium server up and running to execute any webdriverIO tests, or it will fail fast with an error. To start selenium automatically it has been added as part of `services: ['selenium-standalone']` in the .conf.js That's all there is to it.!.
 
 ### Run Some Sample Tests
 
@@ -27,7 +27,6 @@ Option 1: `npm run test`
 
 Option 2:  `grunt webdriver:test`.  This executes all features in the [`./test/specs/*.js`]  directory with a Spec reporter by default and references the `suite.yourSpecific.conf.js` file. Refer to the ./test/config of jasmine-bdd
 
-To execute tests on mobile device use : `npm run test-mobile`
 
 Note: Before running mobile tests, perform the requisite Appium setup. For hassle free Appium setup on OSX refer [appium-setup-made-easy-OSX](https://github.com/amiya-pattnaik/appium-setup-made-easy-OSX) OR refer [Appium Docs](http://appium.io/getting-started.html?lang=en)
 
@@ -61,7 +60,7 @@ Allure has several other reporting tools optimized for the CI server of your cho
 
 ##### junit/xunit
 
-The JUnit reporter helps you to create xml reports for your CI server. Add it to the reports array in the config file and define the directory where the xml files should get stored. webdriverIO will create an xml file for each instance under test and the filename will contain the browser and OS.
+TA WebdriverIO reporter that creates Jenkins compatible XML based JUnit reports. Add it to the reports array in the config file and define the directory where the xml files should get stored. webdriverIO will create an xml file for each instance under test and the filename will contain the browser and OS. Please note, this has been added in .config.
 
 To generate and view an allure report locally, run `npm run junit-report`.
 
@@ -135,6 +134,34 @@ For trouble shooting and more information, please visit `node-any-jdbc` module w
 Note: `node-any-jdbc` is NOT packaged under this project. If you need, you can install it and start using it right away. You can also find sample examples under /util-examples/database-example.js
 
 ```
+
+### Working with MS-Excel
+
+You can user MS-Excel and store your test data, expected data in an excel sheet. Tou can keeep any number of excel sheets you want and use below common methods to puull data from youe sheet to be use as part of testing.  Please note it only support .xlsx file format. For more information refer to the `common-utilities.js` and `util-examples`
+
+```
+//example of pulling data from MS-Excel
+
+var  utl  = require('../utilities/common-utilities.js');
+utl.excel_getTableRow(__dirname+'/sample.xlsx', 'info', 'emp_id', '101', function(results){
+  // returns only one row based on the condition
+  //console.log(results);
+  //console.log(results.emp_id);
+});
+
+utl.excel_getTableRows(__dirname+'/sample.xlsx', 'address', function(results){
+  // returns all rows of the specified sheet
+  //console.log(results[1]);
+  //then do what ever validation you to do withe results
+});
+
+utl.excel_getAllSheetData(__dirname+'/sample.xlsx', function(results){
+  // returns all sheets data of a excel file
+  //console.log(results);
+  //then do what ever validation you to do withe results
+});
+```
+
 ### Common utilities
 
 Refer to the common Javascript functions that provides clean, performant methods for manipulating objects, collections, MS-Excel utilities, DataBase utilities etc. Few sample code can be found in ./util-examples/
@@ -143,7 +170,7 @@ Use [Underscore.js](http://underscorejs.org/) already bundled inside the framewo
 
 ### Contribution
 
-Create a fork of the project into your own repository. Make all your necessary changes and create a pull request with a description on what was added or removed and details explaining the changes in lines of code. If approved, project owners will merge it.
+`Create a fork of the project into your own repository `. Make all your necessary changes and create a pull request with a description on what was added or removed and details explaining the changes in lines of code. If approved, project owners will merge it.
 
 ## History
 

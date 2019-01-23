@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="phptravels_net_login_page" timestamp="2019-01-22T22:08:48" time="4.439" tests="1" failures="0" errors="0" skipped="0">
+    <properties>
+      <property name="specId" value="0"/>
+      <property name="suiteName" value="phptravels.net login page"/>
+      <property name="capabilities" value="chrome"/>
+      <property name="file" value="./test/specs/ta-user-login.spec.js"/>
+    </properties>
+    <testcase classname="chrome.phptravels_net_login_page" name="should_allow_user_to_login" time="4.4"/>
+  </testsuite>
+</testsuites>
