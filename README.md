@@ -2,6 +2,8 @@
 
 This repository contains a collection of sample webdriverIO (v5x) projects and libraries that demonstrate how to use the tool and develop automation script using the Mocha BDD framework. It support ES6 (via babel-register) and uses Grunt to manage tasks, provides utilities to read data from MS-Excel, executes SQL statements to any database(RDBMS such as Oracle, TeraData, MySQL, Vertica) for end to end testing. It generate Spec, JUNIT, Allure reporters as well.
 
+💡 If you need the wdio-v4 boilerplate project, please take the code from v4 branch: click [here](https://github.com/amiya-pattnaik/webdriverIO-with-jasmineBDD/tree/wdio-v4)
+
 ### Installation
 This project is tested on **Node v8.10.0**.  While earlier versions of node may be compatible, they have not been tested or verified.
 
@@ -28,8 +30,7 @@ Option 1: `npm run test`
 Option 2:  `grunt webdriver:test`.  This executes all features in the [`./test/specs/*.js`]  directory with a Spec reporter by default and references the `suite.yourSpecific.conf.js` file. Refer to the ./test/config of jasmine-bdd
 
 
-Note: Before running mobile tests, perform the requisite Appium setup. For hassle free Appium setup on OSX refer [appium-setup-made-easy-OSX](https://github.com/amiya-pattnaik/appium-setup-made-easy-OSX) OR refer [Appium Docs](http://appium.io/getting-started.html?lang=en)
-
+💡 Before running mobile tests, perform the requisite Appium setup. For hassle free `one click Appium setup on OSX` refer [appium-setup-made-easy-OSX](https://github.com/amiya-pattnaik/appium-setup-made-easy-OSX) or refer [Appium Docs](http://appium.io/getting-started.html?lang=en)
 ### Config Files
 
 WebdriverIO uses configuration files to setup and execute tests in specific ways.  The configuration is fully customizable, and different functions can be invoked before, during and after each test or test suite.  Config files are found in the `/test/config/` directory and all end with `*.conf.js`.  These can be called via the the cli
