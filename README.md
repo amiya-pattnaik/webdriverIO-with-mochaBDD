@@ -19,7 +19,7 @@ To take full advantage of the command line and use grunt tasks you will need to 
 
 ### Selenium Tests / Appium Tests
 
-  To run your test you must have selenium / Appium server up and running to execute any webdriverIO tests, or it will fail fast with an error. To start selenium automatically it has been added as part of `services: ['selenium-standalone']` in the .conf.js That's all there is to it.!.
+  To run your test you must have selenium / Appium server up and running to execute any webdriverIO tests, or it will fail fast with an error. To start selenium automatically it has been added as part of `services: ['selenium-standalone']` in the .conf.js.  That's all there is to it.!.
 
 ### Run Some Sample Tests
 
@@ -103,8 +103,42 @@ An object called `Page` will be created with the prototype model or by ES6 class
 
 It is preferable to separate page objects into individual files that end with `.page.js`.  These will require the basic `page.js` prototype construct / abstract class and create new objects for each individual page.
 
-For more information on the implementation of `Page Object Design Pattern`, refer to the `/test/pageobjects` directory.
+For more information on the implementation of `Page Object Design Pattern`, refer to the `/test/pageobjects` directory. A typical page class will look similar to this:
 
+```
+import Page from './page';
+class LoginPage extends Page {
+
+    /**
+    * define elements
+    */
+
+    get usernameInput()   { return $('//*[@name="username"]'); }
+    get passwordInput()   { return $('//*[@name="password"]'); }
+    get rememberMe ()     { return $('//*[@id="remember-me"]'); }
+    get loginButton()     { return $('//button[contains(., "Login")]'); }
+
+    /**
+     * define or overwrite page methods
+     */
+    open () {
+        super.open('login')
+        //browser.pause(3000);
+    }
+    /**
+     * your page specific methods
+     */
+    login (username, password) {
+      this.usernameInput.setValue(username);
+      this.passwordInput.setValue(password);
+      this.rememberMe.click();
+      this.loginButton.click();
+    }
+}
+
+export default new LoginPage()
+
+```
 
 ### Working with DataBase
 
