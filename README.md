@@ -103,7 +103,9 @@ An object called `Page` will be created with the prototype model or by ES6 class
 
 It is preferable to separate page objects into individual files that end with `.page.js`.  These will require the basic `page.js` prototype construct / abstract class and create new objects for each individual page.
 
-For more information on the implementation of `Page Object Design Pattern`, refer to the `/test/pageobjects` directory. A typical page class will look similar to this:
+For more information on the implementation of `Page Object Design Pattern`, refer to the `/test/pageobjects` directory. A typical page class using ES6 syntax will look similar to this:
+
+💡 If you want to use ES5 syntax, refer to the sample.page.js under util-examples.
 
 ```
 import Page from './page';
