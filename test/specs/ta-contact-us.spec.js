@@ -3,7 +3,7 @@ import contactUs from '../pageobjects/ta-contactus.page';
 import assert from 'assert';
 
 /*
-	This is a BDD test using Jasmine JavaScript framework
+	This is a BDD test using Mocha JavaScript framework
 */
 
 describe('navigating to contact-us page', function() {
