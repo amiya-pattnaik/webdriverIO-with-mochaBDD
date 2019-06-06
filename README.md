@@ -72,7 +72,7 @@ You can write test by using Jasmine BDD framework. You can choose Mocha based de
 Refer complete [WebdriverIO v5 API](https://webdriver.io/docs/api.html) methods to write your automation tests.
 
 
-#### Using Jasmine JavaScript framework
+#### Using Mocha JavaScript framework
 
 Tests are written in the Mocha framework. More about Jasmine can be found at https://mochajs.org/
 
