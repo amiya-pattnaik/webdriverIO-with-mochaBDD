@@ -6,7 +6,7 @@
   "scripts": {
     "node-inspector": "node-inspector --debug-port 5859 --no-preload",
     "test": "node node_modules/.bin/wdio ./test/config/suite.mocha.conf.js",
-    "allure-report": "node_modules/.bin/allure generate ./test/reports/allure-results && allure report",
+    "allure-report": "node_modules/.bin/allure generate ./test/reports/allure-results && allure open",
     "junit-report": "node_modules/.bin/junit-viewer --results=./test/reports/junit-results --save=junit-results.html && open junit-results.html"
   },
   "keywords": [
@@ -35,6 +35,7 @@
     "@wdio/selenium-standalone-service": "^5.2.2",
     "@wdio/spec-reporter": "^5.2.3",
     "@wdio/sync": "^5.3.2",
+    "allure-commandline": "^2.13.0",
     "assert": "^1.4.1",
     "junit-viewer": "^4.11.1",
     "lodash": "^4.17.4",
