@@ -6,7 +6,7 @@ import utl from '../../utilities/common-utilities';
 
 
 /*
-	This is a BDD test using Jasmine JavaScript framework
+	This is a BDD test using Mocha JavaScript framework
 */
 
 describe('phptravels.net login page', function() {
