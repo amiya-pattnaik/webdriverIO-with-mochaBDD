@@ -1,11 +1,13 @@
-### WebdriverIO-v5 boilerplate code with Mocha BDD
+### WebdriverIO-v6 boilerplate code with Mocha BDD
 
-This repository contains a collection of sample webdriverIO (v5x) projects and libraries that demonstrate how to use the tool and develop automation script using the Mocha BDD framework. It support ES6 (via babel-register) and uses Grunt to manage tasks, provides utilities to read data from MS-Excel, executes SQL statements to any database(RDBMS such as Oracle, TeraData, MySQL, Vertica) for end to end testing. It generate Spec, JUNIT, Allure reporters as well.
+This repository contains a collection of sample webdriverIO (v6x) projects and libraries that demonstrate how to use the tool and develop automation script using the Mocha BDD framework. It uses the `chromedriver` NPM package that wraps the ChromeDriver for you. This service does not require a Selenium server, but uses ChromeDriver to communicate with the browser directly.
 
-💡 If you need the wdio-v4 boilerplate project, please take the code from v4 branch: click [here](https://github.com/amiya-pattnaik/webdriverIO-with-mochaBDD/tree/wdio-v4)
+It support ES6 (via babel-register) and uses Grunt to manage tasks, provides utilities to read data from MS-Excel, executes SQL statements to any database(RDBMS such as Oracle, TeraData, MySQL, Vertica) for end to end testing. It generate Spec, JUNIT, Allure reporters as well.
+
+💡 If you need the wdio-v5 boilerplate project, please take the code from v4 branch: click [here](https://github.com/amiya-pattnaik/webdriverIO-with-mochaBDD/tree/wdio-v5)
 
 ### Installation
-This project is tested on **Node v8.10.0**.  While earlier versions of node may be compatible, they have not been tested or verified.
+This project is tested on **Node v12.0.0**.  While earlier versions of node may be compatible, they have not been tested or verified.
 
 `JDK 1.8:` Install JDK 1.8+ and make sure class path is set properly. JAVA is require to start `Selenium Server` nothing else.
 
@@ -27,13 +29,19 @@ To execute the entire test suite in local development, you can use any one of th
 
 Option 1: `npm run test`
 
-Option 2:  `grunt webdriver:test`.  This executes all features in the [`./test/specs/*.js`]  directory with a Spec reporter by default and references the `suite.yourSpecific.conf.js` file. Refer to the ./test/config of jasmine-bdd
+Option 2:  `grunt webdriver:test`.  This executes all features in the [`./test/specs/*.js`]  directory with a Spec reporter by default and references the `suite.yourSpecific.conf.js` file. Refer to the ./test/config of mocha-bdd
 
 
 💡 Before running mobile tests, perform the requisite Appium setup. For hassle free `one click Appium setup on OSX` refer [appium-setup-made-easy-OSX](https://github.com/amiya-pattnaik/appium-setup-made-easy-OSX) or refer [Appium Docs](http://appium.io/getting-started.html?lang=en)
+
+
 ### Config Files
 
 WebdriverIO uses configuration files to setup and execute tests in specific ways.  The configuration is fully customizable, and different functions can be invoked before, during and after each test or test suite.  Config files are found in the `/test/config/` directory and all end with `*.conf.js`.  These can be called via the the cli
+
+### SauceLabs/BrowserStack Integration
+
+Sample code has been added in for executing tests in SauceLabs/BrowserStack environment. You just need to provide your SauceLabs/BrowserStack credentials in the config file. look for Services sessions in the `*conf.js file`.
 
 ### Reporters
 
@@ -69,14 +77,14 @@ To generate and view an junit/xunit report locally, run `npm run junit-report`. 
 
 ### Develop automation scripts (for both desktop browser and mobile browser / app)
 
-You can write test by using Jasmine BDD framework. You can choose Mocha based design pattern or ES6 based. This project is ES6 friendly (via babel-register)
+You can write test by using mocha BDD framework. You can choose Mocha based design pattern or ES6 based. This project is ES6 friendly (via babel-register)
 
-Refer complete [WebdriverIO v5 API](https://webdriver.io/docs/api.html) methods to write your automation tests.
+Refer complete [WebdriverIO v6 API](https://webdriver.io/docs/api.html) methods to write your automation tests.
 
 
 #### Using Mocha JavaScript framework
 
-Tests are written in the Mocha framework. More about Jasmine can be found at https://mochajs.org/
+Tests are written in the Mocha framework. More about mocha can be found at https://mochajs.org/
 
 Tests are place in `*.specs.js` files in the `/test/specs/` directory. A typical test will look similar to this:
 ```
@@ -97,7 +105,7 @@ describe('WebdriverIO search', function() {
 ```
 ### The Page Object Design Pattern
 
-Within your web app's UI there are areas that your tests interact with. A Page Object simply models these as objects within the test code. This reduces the amount of duplicated code and means that if the UI changes, the fix need only be applied in one place. In other wards one of the challenges of writing test automation is keeping your [selectors] (classes, id's, or xpath') up to date with the latest version of your code.  The next challenge is to keep the code you write nice and [DRY] (Don't Repeat Yourself).  The page object pattern helps us accomplish this in one solution.  Instead of including our selectors in our step definitions(in cucumber) or in Spec file (in Jasmine or Mocha), we instead place them in a `<pagename>.js` file where we can manage all these selectors and methods together. Your test file should only call the test methods.
+Within your web app's UI there are areas that your tests interact with. A Page Object simply models these as objects within the test code. This reduces the amount of duplicated code and means that if the UI changes, the fix need only be applied in one place. In other wards one of the challenges of writing test automation is keeping your [selectors] (classes, id's, or xpath') up to date with the latest version of your code.  The next challenge is to keep the code you write nice and [DRY] (Don't Repeat Yourself).  The page object pattern helps us accomplish this in one solution.  Instead of including our selectors in Spec file (in Mocha), we instead place them in a `<pagename>.js` file where we can manage all these selectors and methods together. Your test file should only call the test methods.
 
 You can also place reusable functions or logic inside of these pages and call them from your step files. The page object serves as a layer of abstraction between tests and code.  When A test fails, it fails on a individual step.  That step may call a selector that is no longer valid, but that selector may be used by many other steps.  By having a single source of truth of what the selector is supposed to be, fixing one selector on the page object could repair a number of failing tests that were affected by the same selector.
 

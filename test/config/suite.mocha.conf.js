@@ -111,16 +111,60 @@ exports.config = {
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
-    baseUrl: 'http://www.phptravels.net',
+    baseUrl: 'http://the-internet.herokuapp.com/',
     waitforTimeout: 10000,            // Default timeout for all waitFor* commands.
     connectionRetryTimeout: 90000,    // Default timeout in milliseconds for request if Selenium Grid doesn't send response
     connectionRetryCount: 3,          // Default request retries count
 
-    services: ['selenium-standalone'],
-    // services: [browserstack'],
+    // Services take over a specific job you don't want to take care of. They enhance
+    // your test setup with almost no effort. Unlike plugins, they don't add new
+    // commands. Instead, they hook themselves up into the test process.
+
+    // user: process.env.SAUCE_USERNAME,
+    // key: process.env.SAUCE_ACCESS_KEY,
+    // region: 'us',
+
     // user: process.env.BROWSERSTACK_USERNAME,
     // key: process.env.BROWSERSTACK_ACCESS_KEY,
-    // browserstackLocal: true,
+
+    services: [
+      'selenium-standalone',
+      // for Sauce connect execution
+      // ['sauce', {
+      //       sauceConnect: true,
+      //       sauceConnectOpts: {
+      //           // ...
+      //       }
+      // }],
+
+      // for Browserstack  execution
+      // ['browserstack', {
+      //       browserstackLocal: true
+      //   }]
+    ],
+
+    // Test reporter for stdout and other additional reporting
+    reporters: [
+      'spec',
+      ['junit', {
+          outputDir: './test/reports/junit-results/',
+          outputFileFormat: function(opts) { // optional
+              return `results-${opts.cid}.${opts.capabilities}.xml`
+          }
+        }],
+
+      ['allure', {
+          outputDir: './test/reports/allure-results/',
+          disableWebdriverStepsReporting: true,
+          disableWebdriverScreenshotsReporting: false,
+        }],
+
+      ['json',{
+            outputDir: './test/report/json-results'
+        }],
+    ],
+    //
+    //
 
     framework: 'mocha',
     mochaOpts: {
@@ -128,39 +172,6 @@ exports.config = {
       timeout: 90000,
       compilers: ['js:@babel/register'],
     },
-
-    // reporters: ['spec', 'junit','allure', 'json', 'mochawesome'],
-    // reporterOptions: {
-    //     junit:  {outputDir:   './test/reports/junit-results/'},
-    //     json:   {outputDir:   './test/reports/json-results/'},
-    //     allure: {
-    //       outputDir:   './test/reports/allure-results/',
-    //       disableWebdriverStepsReporting: false,
-    //       //useCucumberStepReporter: false,
-    //     },
-    //     mochawesome:  {outputDir:   './test/reports/mocha-results/'},
-    //     mochawesomeOpts: {
-    //       includeScreenshots: true,
-    //       screenshotUseRelativePath:true
-    //     },
-    // },
-    reporters: [
-        'spec',
-        ['junit', {
-            outputDir: './test/reports/junit-results/',
-            outputFileFormat: function(opts) { // optional
-                return `results-${opts.cid}.${opts.capabilities}.xml`
-            }
-          }
-        ],
-
-        ['allure', {
-            outputDir: './test/reports/allure-results/',
-            disableWebdriverStepsReporting: true,
-            disableWebdriverScreenshotsReporting: false,
-          }
-        ],
-    ],
 
     //
     // =====
