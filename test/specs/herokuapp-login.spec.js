@@ -1,7 +1,6 @@
 
 import loginPage    from '../pageobjects/herokuapp-login.page';
 import landingPage  from '../pageobjects/herokuapp-landing.page';
-import utl          from '../../utilities/common-utilities';
 import assert       from 'assert';
 
 /*
