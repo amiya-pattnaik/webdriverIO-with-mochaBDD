@@ -3,13 +3,13 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         webdriver: {
-            testsauce: {
+            'test-sauce': {
                 configFile: './test/config/wdio.sauce.conf.js'
             },
-            testbrowserstack: {
+            'test-browserstack': {
                 configFile: './test/config/wdio.browserstack.conf.js'
             },
-            testlocal: {
+            'test-local': {
                 configFile: './test/config/wdio.local.conf.js'
             },
         },
@@ -17,5 +17,7 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-mocha');
     grunt.loadNpmTasks('grunt-webdriver');
-    grunt.registerTask('default', ['webdriver:testlocal']);
+    grunt.registerTask('default', ['webdriver:test-local']);
+    // grunt.registerTask('default', ['webdriver:test-sauce']);
+    // grunt.registerTask('default', ['test-browserstack']);
 };
