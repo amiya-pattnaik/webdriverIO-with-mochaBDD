@@ -7,14 +7,14 @@
   "homepage": "https://github.com/amiya-pattnaik/webdriverIO-with-mochaBDD",
   "main": "./node_modules/.bin/wdio",
   "scripts": {
-    "allure:history":   "mkdir -p allure-report/history ./test/reports/allure-results/history && cp -a allure-report/history ./test/reports/allure-results/",
-    "allure-report":    "node_modules/.bin/allure generate --clean ./test/reports/allure-results && allure open -p 5050",
-    "xunit-report":     "node_modules/.bin/xunit-viewer --server -p=3000 -t='Automation Test Report' --results=./test/reports/junit-results --output=./xunit-report/xunit-report.html",
-    "test-sauce":       "wdio ./test/config/wdio.sauce.conf.js",
-    "test-browserstack":"wdio ./test/config/wdio.browserstack.conf.js",
-    "test-lambdatest":  "wdio ./test/config/wdio.lambdatest.conf.js",
-    "test-local":       "npm run allure:history && wdio ./test/config/wdio.local.conf.js",
-    "test-mobile":      "wdio ./test/config/wdio.appium.conf.js"
+    "allure:history": "mkdir -p allure-report/history ./test/reports/allure-results/history && cp -a allure-report/history ./test/reports/allure-results/",
+    "allure-report": "node_modules/.bin/allure generate --clean ./test/reports/allure-results && allure open -p 5050",
+    "xunit-report": "node_modules/.bin/xunit-viewer --server -p=3000 -t='Automation Test Report' --results=./test/reports/junit-results --output=./xunit-report/xunit-report.html",
+    "test-sauce": "wdio ./test/config/wdio.sauce.conf.js",
+    "test-browserstack": "wdio ./test/config/wdio.browserstack.conf.js",
+    "test-lambdatest": "wdio ./test/config/wdio.lambdatest.conf.js",
+    "test-local": "npm run allure:history && wdio ./test/config/wdio.local.conf.js",
+    "test-mobile": "wdio ./test/config/wdio.appium.conf.js"
   },
   "keywords": [
     "selenium",
