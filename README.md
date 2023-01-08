@@ -1,10 +1,10 @@
 ### WebdriverIO-v7 boilerplate code with Mocha BDD
 
-This repository contains a collection of sample webdriverIO (v7) projects and libraries that demonstrate how to use the tool and develop automation script using the Jasmine BDD framework. It uses the `chromedriver` NPM package that wraps the ChromeDriver for you. This service does not require a Selenium server, but uses ChromeDriver to communicate with the browser directly.
+This repository contains a collection of sample webdriverIO (v7) projects and libraries that demonstrate how to use the tool and develop automation script using the Mochajs BDD framework. It uses the `chromedriver` NPM package that wraps the ChromeDriver for you. This service does not require a Selenium server, but uses ChromeDriver to communicate with the browser directly.
 
 This boilerplate code support ES6, ES8 (via babel-register), provides sample utilities to read data from MS-Excel, executes SQL statements to any database (RDBMS such as Oracle, TeraData, MySQL, Vertica) for end to end testing. It generate Allure, Junit/Xunit, Spec reporters as well.
 
-💡 If you need the wdio-v6 boilerplate project, please take the code from v5 branch: click [here](https://github.com/amiya-pattnaik/webdriverIO-with-mochaBDD/tree/wdio-v6)
+💡 If you need the wdio-v6 boilerplate project, please take the code from v6 branch: click [here](https://github.com/amiya-pattnaik/webdriverIO-with-mochaBDD/tree/wdio-v6)
 
 
 ### Installation
