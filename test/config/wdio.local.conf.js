@@ -3,7 +3,15 @@ const { config } = require('./wdio.shared.conf')
 exports.config = {
     ...config,
     ...{
-      services: ['selenium-standalone'],
+      services: [
+          ['selenium-standalone', {
+            // drivers: {
+            //   firefox: '0.29.1',
+              // chrome: true, chromiumedge: 'latest'
+            // }
+          }
+        ]
+      ],
       capabilities: [
           {
             maxInstances: 5,

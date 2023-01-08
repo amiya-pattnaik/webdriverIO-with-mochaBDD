@@ -1,35 +1,32 @@
-### WebdriverIO-v6 boilerplate code with Mocha BDD
+### WebdriverIO-v7 boilerplate code with Mocha BDD
 
-This repository contains a collection of sample webdriverIO (v6x) projects and libraries that demonstrate how to use the tool and develop automation script using the Mocha BDD framework. It uses the `chromedriver` NPM package that wraps the ChromeDriver for you. This service does not require a Selenium server, but uses ChromeDriver to communicate with the browser directly.
+This repository contains a collection of sample webdriverIO (v7) projects and libraries that demonstrate how to use the tool and develop automation script using the Jasmine BDD framework. It uses the `chromedriver` NPM package that wraps the ChromeDriver for you. This service does not require a Selenium server, but uses ChromeDriver to communicate with the browser directly.
 
-It support ES6 (via babel-register) and uses Grunt to manage tasks, provides utilities to read data from MS-Excel, executes SQL statements to any database(RDBMS such as Oracle, TeraData, MySQL, Vertica) for end to end testing. It generate Spec, JUNIT, Allure reporters as well.
+This boilerplate code support ES6, ES8 (via babel-register), provides sample utilities to read data from MS-Excel, executes SQL statements to any database (RDBMS such as Oracle, TeraData, MySQL, Vertica) for end to end testing. It generate Allure, Junit/Xunit, Spec reporters as well.
 
-💡 If you need the wdio-v5 boilerplate project, please take the code from v5 branch: click [here](https://github.com/amiya-pattnaik/webdriverIO-with-mochaBDD/tree/wdio-v5)
+💡 If you need the wdio-v6 boilerplate project, please take the code from v5 branch: click [here](https://github.com/amiya-pattnaik/webdriverIO-with-mochaBDD/tree/wdio-v6)
 
 
 ### Installation
-This project is tested on **Node v12.0.0** and above.  While earlier versions of node may be compatible, but they have not been verified.
+This project is tested on **Node v15.0.0** and above.  While earlier versions of node may be compatible, but they have not been verified.
 
-`Node.JS:` Install  from the site - https://nodejs.org/en/  take the LTS version based on your Operating system. Please make sure you install NodeJS globally. To take full advantage of the command line and use grunt tasks you will need to make sure that you have added `node_modules/.bin` to your `$PATH`.  Otherwise you will need to install `npm install -g  grunt-cli` globally.
+`Node.JS:` Install  from the site - https://nodejs.org/en/  take the LTS version based on your Operating system. Please make sure you install NodeJS globally.
 
-
-`JDK 1.8:` It is optional, install JDK 1.8+ and make sure class path is set properly. JAVA is require to start `Selenium Server` on your local environment nothing else.
-
+`JDK:` It is optional, install JDK and make sure class path is set properly. JAVA is require to start `Selenium Server` on your local environment nothing else.
 
 ### Selenium Tests / Appium Tests
 
-  To run your test you must have selenium / Appium server up and running to execute any webdriverIO tests, or it will fail fast with an error. To start selenium automatically it has been added as part of `services: ['selenium-standalone']` and `services: ['appium']` in the *.conf.js.  That's all there is to it.!.
+To run your test you must have Selenium / Appium server up and running to execute any webdriverIO tests, or it will fail fast with an error. To start selenium automatically it has been added as part of `services: ['selenium-standalone']` and `services: ['appium']` in the *.conf.js.  That's all there is to it.!.
 
 ### Run Some Sample Tests
 
-To execute the entire test suite in local development, you can use any one of the options mentioned below
+To execute the entire test suite on local development or cloud provider, you can use below
 
-Option 1: `npm run test-local`. You can also run in SauceLabs and BrowserStack using `npm run test-sauce`, `npm run test-browserstack`.
+Option 1: Local Environment `npm run test-local`.
 
-Option 2: `grunt webdriver:test-local`.  This executes all spec files in the [`./test/specs/*.js`] directory.
-The default option for Grunt run is `webdriver:test-local`. But you can use `webdriver:test-sauce` or `test-browserstack` based on your requirements.
+Option 2: You can also run in `SauceLabs` or  `BrowserStack` or `LambdaTest` using `npm run test-sauce` or `npm run test-browserstack` or `npm run test-browserstack`.
 
-To execute tests on `mobile device` use : `npm run test-mobile`.
+Option 3: Mobile Device. To execute tests on mobile device use : `npm run test-mobile`.
 
 💡 Before running mobile tests, perform the requisite Appium setup. For hassle free `one click Appium setup on OSX` refer [appium-setup-made-easy-OSX](https://github.com/amiya-pattnaik/appium-setup-made-easy-OSX) or refer [Appium Docs](http://appium.io/getting-started.html?lang=en)
 
@@ -39,7 +36,7 @@ WebdriverIO uses configuration files to setup and execute tests in specific ways
 
 ### SauceLabs / BrowserStack Integration
 
-`SauceLabs` and `BrowserStack` specific code has been added in the `wdio.sauce.conf.js` and  `wdio.browserstack.conf.js` under the /test/config folder. You just need to provide your SauceLabs/BrowserStack credentials in the config file. To run test on SauceLabs, execute command `npm run test-sauce` and on BrowserStack `npm run test-browserstack`.
+`SauceLabs`, `BrowserStack` and `lambdatest` specific code has been added in the `wdio.sauce.conf.js`, `wdio.browserstack.conf.js` and `wdio.lambdatest.conf.js` under the /test/config folder. You just need to provide your SauceLabs/BrowserStack/LambdaTest credentials in the config file. To run test on SauceLabs, execute command `npm run test-sauce` to run test on BrowserStack `npm run test-browserstack`, to run test on LambdaTest `npm run test-lambdatest`.
 
 ### Logs  
 
@@ -49,6 +46,22 @@ Complete set of execution `logs` will be generated during the run time and can b
 
 WebdriverIO uses several different types of test reporters to communicate pass/failure.
 
+##### Allure
+
+The Allure Reporter creates [Allure](https://docs.qameta.io/allure/) test reports which is an HTML generated website with all necessary information to debug your test results and take a look on error screenshots. Add allure to the reporters array in config file and define the output directory of the allure reports.  Please note, this has been added in wdio.shared.config.
+
+To generate and view an Allure report inside your corp network or locally, run `npm run allure-report`. The Allure report is hosted on a `web server` and can be accessed through http://YourMachineIP:5050/ and also generated locally which can be found at `./allure-report/index.html`. A typical Allure report will look like this.
+
+![ScreenShot](https://github.com/amiya-pattnaik/snapshots/blob/master/allure-report.png)
+
+##### Junit/Xunit
+
+A WebdriverIO reporter that creates Jenkins compatible XML based JUnit/Xunit reports. Add it to the reports array in the config file and define the directory where the .xml files should get stored. webdriverIO will create an xml file for each instance under test and the filename will contain the browser and OS. Please note, this has been added in wdio.shared.config.
+
+To generate and view the Junit/Xunit report inside your corp network or locally, run `npm run xunit-report`.  The Junit/Xunit report is hosted on a `web server` and can be accessed through http://YourMachineIP:3000/ and also generated locally which can be found at `./xunit-report/xunit-report.html`. A typical Junit/Xunit report will look like this.
+
+![ScreenShot](https://github.com/amiya-pattnaik/snapshots/blob/master/xunit-report.png)
+
 ##### Dot
 
 To use the dot reporter just add 'dot' to the reporters array in the config file. The dot reporter prints for each test spec a dot. If colors are enabled on your machine you will see three different colors for dots. Yellow dots mean that at least one browser has executed that spec. A green dot means all browser passed that spec and a red to means that at least one browser failed that spec. All config files have this turned on by default.
@@ -56,26 +69,6 @@ To use the dot reporter just add 'dot' to the reporters array in the config file
 ##### Spec
 
 Test reporter, that prints detailed results to console.
-
-##### Allure
-
-The Allure Reporter creates [Allure](http://allure.qatools.ru/) test reports which is an HTML generated website with all necessary information to debug your test results and take a look on error screenshots. Add allure to the reporters array in config file and define the output directory of the allure reports.  Please note, this has been added in .config.
-
-To generate and view an allure report locally, run `npm run allure-report`. A typical Allure report will look like this
-
-![ScreenShot](https://github.com/allure-framework/allure2/blob/master/.github/readme-img.png)
-
-Allure has several other reporting tools optimized for the CI server of your choice.  You can [view the documentation here](http://wiki.qatools.ru/display/AL/Reporting).
-
-Allure has several other reporting tools optimized for the CI server of your choice.  You can [view the documentation here](http://wiki.qatools.ru/display/AL/Reporting).
-
-##### junit/xunit
-
-A WebdriverIO reporter that creates Jenkins compatible XML based JUnit reports. Add it to the reports array in the config file and define the directory where the xml files should get stored. webdriverIO will create an xml file for each instance under test and the filename will contain the browser and OS. Please note, this has been added in .config.
-
-To generate and view an junit/xunit report locally, run `npm run junit-report`. A typical junit/xunit report will look like this
-
-![ScreenShot](https://github.com/amiya-pattnaik/snapshots/blob/master/junit-result.png)
 
 ### Develop automation scripts (for both desktop browser and mobile browser / app)
 
@@ -87,7 +80,7 @@ Refer complete [WebdriverIO v6 API](https://webdriver.io/docs/api.html) methods 
 
 Tests are written in the Mocha framework. More about Mocha can be found at  https://mochajs.org/
 
-Tests are place in `*.specs.js` files in the `/test/specs/` directory. A typical test will look similar to this:
+Sample tests are located in `*.specs.js` files in the `/test/specs/` directory. A typical test will look similar to this:
 ```
 //example.js
 //a simple test using synchronous mode//
@@ -152,6 +145,7 @@ class LoginPage extends Page {
 export default new LoginPage()
 
 ```
+### Additional Utilities (out of scope of this framework)
 
 ### Working with DataBase
 
