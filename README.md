@@ -1,14 +1,14 @@
-### WebdriverIO-v7 boilerplate code with Mocha BDD
+### WebdriverIO-v8 boilerplate code with Mocha BDD
 
-This repository contains a collection of sample webdriverIO (v7) projects and libraries that demonstrate how to use the tool and develop automation script using the Mochajs BDD framework. It uses the `chromedriver` NPM package that wraps the ChromeDriver for you. This service does not require a Selenium server, but uses ChromeDriver to communicate with the browser directly.
+This repository contains a collection of sample webdriverIO (v8) projects and libraries that demonstrate how to use the tool and develop automation script using the Mochajs BDD framework. It uses the `chromedriver` NPM package that wraps the ChromeDriver for you. This service does not require a Selenium server, but uses ChromeDriver to communicate with the browser directly.
 
-This boilerplate code support ES6, ES8 (via babel-register), provides sample utilities to read data from MS-Excel, executes SQL statements to any database (RDBMS such as Oracle, TeraData, MySQL, Vertica) for end to end testing. It generate Allure, Junit/Xunit, Spec reporters as well.
+This boilerplate code support Typescript, also provides sample utilities to read data from MS-Excel, executes SQL statements to any database (RDBMS such as Oracle, TeraData, MySQL, Vertica) for end to end testing. It generate Allure, JSON, Junit/Xunit, Spec reporters as well. `Please note that at the time of writing (January 2023) the wdio reporting module of JSON, Junit/Xunit are not fully compatible with V8 hence it is disabled from this boilerplate code.`
 
-💡 If you need the wdio-v6 boilerplate project, please take the code from v6 branch: click [here](https://github.com/amiya-pattnaik/webdriverIO-with-mochaBDD/tree/wdio-v6)
+💡 If you need the wdio-v7 boilerplate project, please take the code from v7 branch: click [here](https://github.com/amiya-pattnaik/webdriverIO-with-mochaBDD/tree/wdio-v7)
 
 
 ### Installation
-This project is tested on **Node v15.0.0** and above.  While earlier versions of node may be compatible, but they have not been verified.
+This project is tested on **Node v18.0.0** and above.  While earlier versions of node may be compatible, but they have not been verified.
 
 `Node.JS:` Install  from the site - https://nodejs.org/en/  take the LTS version based on your Operating system. Please make sure you install NodeJS globally.
 
@@ -16,7 +16,7 @@ This project is tested on **Node v15.0.0** and above.  While earlier versions of
 
 ### Selenium Tests / Appium Tests
 
-To run your test you must have Selenium / Appium server up and running to execute any webdriverIO tests, or it will fail fast with an error. To start selenium automatically it has been added as part of `services: ['selenium-standalone']` and `services: ['appium']` in the *.conf.js.  That's all there is to it.!.
+To run your test you must have Selenium / Appium server up and running to execute any webdriverIO tests, or it will fail fast with an error. To start selenium automatically it has been added as part of `services: ['selenium-standalone']` and `services: ['appium']` in the *.conf.ts.  That's all there is to it.!.
 
 ### Run Some Sample Tests
 
@@ -32,9 +32,9 @@ Option 3: Mobile Device. To execute tests on mobile device use : `npm run test-m
 
 ### Config Files
 
-WebdriverIO uses configuration files to setup and execute tests in specific ways.  The configuration is fully customizable, and different functions can be invoked before, during and after each test or test suite.  Config files are found in the `/test/config/` directory and all end with `*.conf.js`.  These can be called via the the cli
+WebdriverIO uses configuration files to setup and execute tests in specific ways.  The configuration is fully customizable, and different functions can be invoked before, during and after each test or test suite.  Config files are found in the `the root directory of this boilerplate project.`and all ends with `*.conf.ts`.  These can be called via the the cli.
 
-### SauceLabs / BrowserStack Integration
+### SauceLabs / BrowserStack / LambdaTest Integration
 
 `SauceLabs`, `BrowserStack` and `lambdatest` specific code has been added in the `wdio.sauce.conf.js`, `wdio.browserstack.conf.js` and `wdio.lambdatest.conf.js` under the /test/config folder. You just need to provide your SauceLabs/BrowserStack/LambdaTest credentials in the config file. To run test on SauceLabs, execute command `npm run test-sauce` to run test on BrowserStack `npm run test-browserstack`, to run test on LambdaTest `npm run test-lambdatest`.
 
@@ -72,9 +72,9 @@ Test reporter, that prints detailed results to console.
 
 ### Develop automation scripts (for both desktop browser and mobile browser / app)
 
-You can write test by using Mocha BDD framework. You can choose javascript based design pattern or ES6 based. This project is ES6 friendly (via babel-register)
+You can write test by using Mocha BDD framework. You can choose TypeScript / JavaScript based design pattern or ES6 based.
 
-Refer complete [WebdriverIO v6 API](https://webdriver.io/docs/api.html) methods to write your automation tests.
+Refer complete [WebdriverIO v8 API](https://webdriver.io/docs/api) methods to write your automation tests.
 
 #### Using Mocha JavaScript framework
 
@@ -82,30 +82,26 @@ Tests are written in the Mocha framework. More about Mocha can be found at  http
 
 Sample tests are located in `*.specs.js` files in the `/test/specs/` directory. A typical test will look similar to this:
 ```
-//example.js
-//a simple test using synchronous mode//
+//example (pls refer to pageobject class and spec files)
+//a simple test using async mode//
 
-describe('WebdriverIO search', function() {
-
-    it('searches for WebdriverIO', function() {
-        browser.url('https://duckduckgo.com/');
-        $('#search_form_input_homepage').setValue('WebdriverIO');
-        $('#search_button_homepage').click();
-        var title = browser.getTitle();
-        console.log('Title is: ' + title);
-    });
+describe('Performing a search operation on Yahoo Page',  () =>  {
+  it('Performing a search operation', async () =>  {
+    await yahooPage.open();
+    assert.equal(await browser.getTitle(), 'Yahoo Search - Web Search');
+  });
 });
 
 ```
 ### The Page Object Design Pattern
 
-Within your web app's UI there are areas that your tests interact with. A Page Object simply models these as objects within the test code. This reduces the amount of duplicated code and means that if the UI changes, the fix need only be applied in one place. In other wards one of the challenges of writing test automation is keeping your [selectors] (classes, id's, or xpath's etc.) up to date with the latest version of your code.  The next challenge is to keep the code you write nice and [DRY] (Don't Repeat Yourself).  The page object pattern helps us accomplish this in one solution.  Instead of including our selectors in Spec file (in Mocha), we instead place them in a `<pagename>.js` file where we can manage all these selectors and methods together. Your test file should only call the test methods.
+Within your web app's UI there are areas that your tests interact with. A Page Object simply models these as objects within the test code. This reduces the amount of duplicated code and means that if the UI changes, the fix need only be applied in one place. In other wards one of the challenges of writing test automation is keeping your [selectors] (classes, id's, or xpath's etc.) up to date with the latest version of your code.  The next challenge is to keep the code you write nice and [DRY] (Don't Repeat Yourself).  The page object pattern helps us accomplish this in one solution.  Instead of including our selectors in Spec file (in Mocha), we instead place them in a `<pagename>.ts` file where we can manage all these selectors and methods together. Your test file should only call the test methods.
 
 You can also place reusable functions or logic inside of these pages and call them from your step files. The page object serves as a layer of abstraction between tests and code.  When A test fails, it fails on a individual step.  That step may call a selector that is no longer valid, but that selector may be used by many other steps.  By having a single source of truth of what the selector is supposed to be, fixing one selector on the page object could repair a number of failing tests that were affected by the same selector.
 
 An object called `Page` will be created with the prototype model or by ES6 class pattern.  This ensures that every instance of a page object is exported as a stateless construct. Any any changes to that state are handled in the browser, rather than on the server.
 
-It is preferable to separate page objects into individual files that end with `.page.js`.  These will require the basic `page.js` prototype construct / abstract class and create new objects for each individual page.
+It is preferable to separate page objects into individual files that end with `.page.ts`.  These will require the basic `page.ts` prototype construct / abstract class and create new objects for each individual page.
 
 For more information on the implementation of `Page Object Design Pattern`, refer to the `/test/pageobjects` directory. A typical page class using ES6 syntax will look similar to this:
 
@@ -121,24 +117,30 @@ class LoginPage extends Page {
 
     get usernameInput()   { return $('//*[@name="username"]'); }
     get passwordInput()   { return $('//*[@name="password"]'); }
-    get rememberMe ()     { return $('//*[@id="remember-me"]'); }
     get loginButton()     { return $('//button[contains(., "Login")]'); }
 
     /**
      * define or overwrite page methods
      */
-    open () {
-        super.open('login')
+    async open() {
+        await super.open('login')       //this will append `login` to the baseUrl to form complete URL
         //browser.pause(3000);
     }
     /**
      * your page specific methods
      */
-    login (username, password) {
-      this.usernameInput.setValue(username);
-      this.passwordInput.setValue(password);
-      this.rememberMe.click();
-      this.loginButton.click();
+
+    async waitForloginPageToLoad() {
+      if(!(await this.headerImage.isDisplayed())){
+        await this.headerImage.waitForDisplayed(10000);
+      }
+    }
+
+    async login(username, password) {
+      //this.waitForloginPageToLoad();
+      await this.usernameInput.setValue(username);
+      await this.passwordInput.setValue(password);
+      await this.loginButton.click();
     }
 }
 

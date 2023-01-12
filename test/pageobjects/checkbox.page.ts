@@ -1,4 +1,4 @@
-import Page from './page'
+import Page from './page.ts'
 
 class CheckboxPage extends Page {
     /**
@@ -10,8 +10,8 @@ class CheckboxPage extends Page {
     /**
      * define or overwrite page methods
      */
-    open () {
-        super.open('checkboxes')
+    async open() {
+        return super.open('checkboxes')
     }
 }
 
