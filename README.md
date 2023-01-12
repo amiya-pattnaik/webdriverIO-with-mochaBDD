@@ -36,7 +36,7 @@ WebdriverIO uses configuration files to setup and execute tests in specific ways
 
 ### SauceLabs / BrowserStack / LambdaTest Integration
 
-`SauceLabs`, `BrowserStack` and `lambdatest` specific code has been added in the `wdio.sauce.conf.js`, `wdio.browserstack.conf.js` and `wdio.lambdatest.conf.js` under the /test/config folder. You just need to provide your SauceLabs/BrowserStack/LambdaTest credentials in the config file. To run test on SauceLabs, execute command `npm run test-sauce` to run test on BrowserStack `npm run test-browserstack`, to run test on LambdaTest `npm run test-lambdatest`.
+`SauceLabs`, `BrowserStack` and `lambdatest` specific code has been added in the `wdio.sauce.conf.ts`, `wdio.browserstack.conf.ts` and `wdio.lambdatest.conf.ts` under the /test/config folder. You just need to provide your SauceLabs/BrowserStack/LambdaTest credentials in the config file. To run test on SauceLabs, execute command `npm run test-sauce` to run test on BrowserStack `npm run test-browserstack`, to run test on LambdaTest `npm run test-lambdatest`.
 
 ### Logs  
 
@@ -83,7 +83,8 @@ Tests are written in the Mocha framework. More about Mocha can be found at  http
 Sample tests are located in `*.specs.js` files in the `/test/specs/` directory. A typical test will look similar to this:
 ```
 //example (pls refer to pageobject class and spec files)
-//a simple test using async mode//
+
+//a test using async mode//
 
 describe('Performing a search operation on Yahoo Page',  () =>  {
   it('Performing a search operation', async () =>  {
