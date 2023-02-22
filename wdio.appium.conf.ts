@@ -1,7 +1,7 @@
 import { config as sharedConfig } from './wdio.shared.conf.ts';
 
-exports.config = {
-    ...config,
+export const config: WebdriverIO.Config = {
+    ...sharedConfig,
     ...{
       host: '0.0.0.0',
       port: 4723,
